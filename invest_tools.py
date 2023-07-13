@@ -6,8 +6,8 @@ if __name__ == '__main__':
 
     tickers_in_book = excel.get_tikker(path_workbook)
 
-    current_price = dict()
+    actual_price = dict()
     for ticker in tickers_in_book:
-        current_price[ticker] = price.check_asset(ticker)
+        actual_price[ticker] = price.check_asset(ticker)
 
-    print(current_price)
+    excel.price_writer(path_workbook, actual_price)
