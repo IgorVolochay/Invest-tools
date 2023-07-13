@@ -1,18 +1,13 @@
 import tools.update_prices as price
+import tools.excel_worker as excel
 
 if __name__ == '__main__':
-    # Тестрование акций
-    print(price.check_asset("SBER"))
-    print(price.check_asset("VKCO"))
-    print(price.check_asset("PIKK"))
-    print(price.check_asset("ABRD"))
-    print(price.check_asset("GAZP"))
-    print(price.check_asset("POLY"))
+    path_workbook = "assets.xlsx" # Выбрать путь до книги Excel
 
-    # Тестирование фондов
-    print(price.check_asset("TRAI"))
-    print(price.check_asset("TMOS"))
-    print(price.check_asset("GOLD"))
-    print(price.check_asset("AKGD"))
-    print(price.check_asset("INGO"))
-    print(price.check_asset("TCBR"))
+    tickers_in_book = excel.get_tikker(path_workbook)
+
+    current_price = dict()
+    for ticker in tickers_in_book:
+        current_price[ticker] = price.check_asset(ticker)
+
+    print(current_price)
